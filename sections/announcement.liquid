@@ -1,0 +1,52 @@
+<style>
+  {%- if settings.color_announcement == settings.color_body_bg -%}
+    .announcement-bar {
+      border-bottom: 1px solid;
+    }
+  {%- endif -%}
+</style>
+
+<div class="announcement-bar-wrapper">
+  <div class="announcement-bar">
+    <div class="page-width">
+
+      {% if section.settings.link != blank %}
+        <a href="{{ section.settings.link }}" class="announcement-link">
+      {% endif %}
+
+      {% if section.settings.text != blank %}
+        <span class="announcement-text">{{ section.settings.text }}</span>
+      {% endif %}
+
+      {% if section.settings.link != blank %}
+        </a>
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Announcement text",
+      "default": "Free shipping on all orders"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Optional link"
+    }
+  ],
+  "default": {
+    "settings": {}
+  },
+  "disabled_on": {
+    "groups": ["footer", "custom.popups"]
+  }
+}
+{% endschema %}
